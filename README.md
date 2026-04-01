@@ -1,6 +1,6 @@
 # eggs-gui
 
-Unified GUI for [penguins-eggs](https://github.com/pieroproietti/penguins-eggs) — a Linux live ISO remastering tool.
+Unified GUI for [penguins-eggs](https://github.com/Interested-Deving-1896/penguins-eggs) — a Linux live ISO remastering tool.
 
 Merges three existing projects into one system with a shared Go backend and multiple frontend options:
 
@@ -38,7 +38,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full design.
 
 ## Features
 
-Merged from [pengui](https://github.com/pieroproietti/pengui), [eggsmaker](https://github.com/pieroproietti/eggsmaker), and [eggsmaker (jlendres fork)](https://github.com/jlendres/eggsmaker):
+Merged from [pengui](https://github.com/Interested-Deving-1896/pengui), [eggsmaker](https://github.com/Interested-Deving-1896/eggsmaker), and [eggsmaker (jlendres fork)](https://github.com/jlendres/eggsmaker):
 
 - Produce ISOs with full option control (prefix, basename, compression, theme, excludes, clone)
 - AUTO mode — one-click prepare + produce workflow
@@ -84,8 +84,8 @@ make run-web       # Web UI at http://localhost:8080
 
 ## Credits
 
-- [pengui](https://github.com/pieroproietti/pengui) by Piero Proietti — PySide6 GUI
-- [eggsmaker](https://github.com/pieroproietti/eggsmaker) by Jorge Luis Endres — customtkinter GUI
+- [pengui](https://github.com/Interested-Deving-1896/pengui) by Piero Proietti — PySide6 GUI
+- [eggsmaker](https://github.com/Interested-Deving-1896/eggsmaker) by Jorge Luis Endres — customtkinter GUI
 - [eggsmaker fork](https://github.com/jlendres/eggsmaker) by Jorge Luis Endres — enhanced + web UI
 
 ## License
