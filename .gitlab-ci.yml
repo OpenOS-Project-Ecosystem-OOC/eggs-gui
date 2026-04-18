@@ -1,5 +1,4 @@
 # Converted from GitHub Actions — eggs-gui
-# Triggers: push/MR to main or master.
 
 stages:
   - test
@@ -8,11 +7,10 @@ test:
   stage: test
   image: node:22
   cache:
-    key:
-      files: [package-lock.json]
+    key: "$CI_COMMIT_REF_SLUG"
     paths: [node_modules/]
   script:
-    - npm ci
+    - npm install
     - npm run build || true
     - npm test || true
   rules:
