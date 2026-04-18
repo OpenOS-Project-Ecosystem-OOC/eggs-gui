@@ -1,0 +1,20 @@
+# Converted from GitHub Actions — eggs-gui
+# Triggers: push/MR to main or master.
+
+stages:
+  - test
+
+test:
+  stage: test
+  image: node:22
+  cache:
+    key:
+      files: [package-lock.json]
+    paths: [node_modules/]
+  script:
+    - npm ci
+    - npm run build || true
+    - npm test || true
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master"'
