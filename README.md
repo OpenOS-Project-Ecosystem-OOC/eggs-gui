@@ -1,6 +1,6 @@
 # eggs-gui
 
-Unified GUI for [penguins-eggs](https://github.com/pieroproietti/penguins-eggs) — a Linux live ISO remastering tool.
+Unified GUI for [penguins-eggs](https://gitlab.com/openos-project/penguins-eggs_deving/penguins-eggs) — a Linux live ISO remastering tool.
 
 Merges three existing projects into one system with a shared Go backend and multiple frontend options:
 
