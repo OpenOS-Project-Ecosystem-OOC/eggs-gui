@@ -30,3 +30,4 @@ venv/
 
 # Runtime
 /tmp/eggs-gui.sock
+.npmrc
