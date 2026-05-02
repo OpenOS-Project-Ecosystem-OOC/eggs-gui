@@ -31,7 +31,7 @@ jobs:
             > ~/.git-credentials
 
           git remote add mirror \
-            "https://github.com/Interested-Deving-1896/eggs-gui.git"
+            "https://x-access-token:${MIRROR_TOKEN}@github.com/Interested-Deving-1896/eggs-gui.git"
 
           git push mirror --all --force
           git push mirror --tags --force
