@@ -91,3 +91,12 @@ make run-web       # Web UI at http://localhost:8080
 ## License
 
 MIT
+
+## Origins
+
+eggs-gui merges three upstream GUI projects:
+- [pieroproietti/pengui](https://github.com/pieroproietti/pengui) — original PySide6 GUI for penguins-eggs
+- [pieroproietti/eggsmaker](https://github.com/pieroproietti/eggsmaker) — customtkinter GUI by Jorge Luis Endres
+- [jlendres/eggsmaker](https://github.com/jlendres/eggsmaker) — enhanced fork with web UI
+- [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) — Go TUI framework (BubbleTea frontend)
+- [nodegui/nodegui](https://github.com/nodegui/nodegui) — Qt6/TypeScript native desktop framework
