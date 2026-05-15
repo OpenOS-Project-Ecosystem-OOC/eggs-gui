@@ -1,5 +1,7 @@
 # eggs-gui
 
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/OpenOS-Project-OSP/eggs-gui)
+
 Unified GUI for [penguins-eggs](https://github.com/Interested-Deving-1896/penguins-eggs) — a Linux live ISO remastering tool.
 
 Merges three existing projects into one system with a shared Go backend and multiple frontend options:
