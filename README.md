@@ -1,95 +1,95 @@
+[update-readmes]   Mode: rewrite — migrating to template structure...
 # eggs-gui
 
-[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/OpenOS-Project-OSP/eggs-gui)
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/eggs-gui)
 
-Unified GUI for [penguins-eggs](https://github.com/Interested-Deving-1896/penguins-eggs) — a Linux live ISO remastering tool.
-
-Merges three existing projects into one system with a shared Go backend and multiple frontend options:
-
-| Frontend | Framework | Use case |
-|----------|-----------|----------|
-| **TUI** | [BubbleTea](https://github.com/charmbracelet/bubbletea) (Go) | Terminal power users, SSH sessions |
-| **Desktop** | [NodeGUI](https://github.com/nodegui/nodegui) (Qt6/TypeScript) | Native desktop with CSS styling |
-| **Web** | [NiceGUI](https://nicegui.io/) (Python) | Remote/headless access via browser |
-
-All frontends connect to a single Go daemon via JSON-RPC over a Unix socket.
-
-## Quick Start
-
-```bash
-# Build daemon + TUI
-make all
-
-# Run (starts daemon in background, then TUI)
-make run
-```
+<!-- AI:start:what-it-does -->
+This project provides a unified graphical user interface for managing and interacting with penguins-eggs, a system provisioning tool. It integrates multiple components, including a Go-based daemon, a terminal user interface (TUI) built with BubbleTea, a desktop application using NodeGUI, and a web frontend powered by NiceGUI. It is designed for developers and system administrators who need a consolidated interface for provisioning and system management tasks.
+<!-- AI:end:what-it-does -->
 
 ## Architecture
 
+<!-- AI:start:architecture -->
+The project consists of four main components: a Go-based daemon, a BubbleTea TUI, a NodeGUI desktop application, and a NiceGUI web frontend. These components interact with each other through the Go daemon, which serves as the backend service managing core functionality. The TUI, desktop, and web frontends act as clients, communicating with the daemon to provide user interfaces. The TUI and desktop applications are compiled binaries, while the web frontend runs as a Python application.
+
+The repository structure is organized as follows:
+
+```plaintext
+.
+├── bin/                # Compiled binaries for the daemon and TUI
+├── daemon/             # Go daemon source code
+│   └── cmd/            # Entry point for the daemon
+├── tui/                # BubbleTea TUI source code
+│   └── cmd/            # Entry point for the TUI
+├── desktop/            # NodeGUI desktop application
+│   ├── src/            # Source code for the desktop app
+│   └── dist/           # Build output for the desktop app
+├── web/                # NiceGUI web frontend
+│   ├── static/         # Static assets for the web app
+│   └── main.py         # Entry point for the web app
+├── assets/             # Additional resources (e.g., .desktop file)
+├── Makefile            # Build and run commands
+└── workflows/          # CI/CD configuration files
 ```
-Frontend (TUI/Desktop/Web)
-        │
-   JSON-RPC over Unix socket
-        │
-   eggs-daemon (Go)
-        │
-   penguins-eggs CLI
-```
+<!-- AI:end:architecture -->
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for the full design.
+## Install
 
-## Features
-
-Merged from [pengui](https://github.com/Interested-Deving-1896/pengui), [eggsmaker](https://github.com/Interested-Deving-1896/eggsmaker), and [eggsmaker (jlendres fork)](https://github.com/jlendres/eggsmaker):
-
-- Produce ISOs with full option control (prefix, basename, compression, theme, excludes, clone)
-- AUTO mode — one-click prepare + produce workflow
-- Dad configuration editor (eggs.yaml)
-- Tools configuration editor (tools.yaml)
-- Wardrobe browser — costumes, accessories, servers
-- Calamares installer management
-- PPA, Skel, Yolk tools
-- ISO copy to USB/directory with progress
-- Version display (eggs, calamares, distro)
-- i18n support (es, en, pt, it)
-
-## Development
-
-### Prerequisites
-
-- Go 1.22+ (daemon + TUI)
-- Node.js 20+ (desktop, optional)
-- Python 3.11+ (web, optional)
-
-### Building individual components
+<!-- Add installation instructions here. This section is yours — the AI will not modify it. -->
 
 ```bash
-make daemon      # Go backend daemon
-make tui         # BubbleTea terminal UI
-make desktop     # NodeGUI desktop app (requires: cd desktop && npm install)
-make web         # Instructions for web frontend
+git clone https://github.com/Interested-Deving-1896/eggs-gui.git
+cd eggs-gui
 ```
 
-### Running
+## Usage
 
-The daemon must be running for any frontend to work:
+<!-- Add usage examples here. This section is yours — the AI will not modify it. -->
 
-```bash
-# Terminal 1: start daemon
-make run-daemon
+## Configuration
 
-# Terminal 2: pick a frontend
-make run-tui       # Terminal UI
-make run-desktop   # Native desktop
-make run-web       # Web UI at http://localhost:8080
+<!-- Document configuration options here. This section is yours — the AI will not modify it. -->
+
+## CI
+
+<!-- AI:start:ci -->
+_CI documentation pending._
+<!-- AI:end:ci -->
+
+## Mirror chain
+
+<!-- AI:start:mirror-chain -->
+This repo is maintained in [`Interested-Deving-1896/eggs-gui`](https://github.com/Interested-Deving-1896/eggs-gui) and mirrored through:
+
+```
+Interested-Deving-1896/eggs-gui  ──►  OpenOS-Project-OSP/eggs-gui  ──►  OpenOS-Project-Ecosystem-OOC/eggs-gui
 ```
 
-## Credits
+Changes flow downstream automatically via the hourly mirror chain in
+[`fork-sync-all`](https://github.com/Interested-Deving-1896/fork-sync-all).
+Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-Deving-1896`.
+<!-- AI:end:mirror-chain -->
 
-- [pengui](https://github.com/Interested-Deving-1896/pengui) by Piero Proietti — PySide6 GUI
-- [eggsmaker](https://github.com/Interested-Deving-1896/eggsmaker) by Jorge Luis Endres — customtkinter GUI
-- [eggsmaker fork](https://github.com/jlendres/eggsmaker) by Jorge Luis Endres — enhanced + web UI
+## Contributors
+
+<!-- AI:start:contributors -->
+_Contributors pending._
+<!-- AI:end:contributors -->
+
+## Origins
+
+<!-- AI:start:origins -->
+_No dependency graph found. Run `generate-dep-graph.yml` to generate `dep-graph/origins.md`._
+<!-- AI:end:origins -->
+
+## Resources
+
+<!-- AI:start:resources -->
+_No additional resource files found._
+<!-- AI:end:resources -->
 
 ## License
 
-MIT
+<!-- AI:start:license -->
+<!-- License not detected — add a LICENSE file to this repo. -->
+<!-- AI:end:license -->
