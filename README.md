@@ -4,33 +4,41 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/eggs-gui)
 
 <!-- AI:start:what-it-does -->
-This project provides a unified graphical user interface for managing and interacting with penguins-eggs, a system provisioning tool. It integrates multiple components, including a Go-based daemon, a terminal user interface (TUI) built with BubbleTea, a desktop application using NodeGUI, and a web frontend powered by NiceGUI. It is designed for developers and system administrators who need a consolidated interface for provisioning and system management tasks.
+This project provides a unified graphical user interface for managing penguins-eggs, a system provisioning tool. It integrates multiple components, including a Go-based daemon, a terminal user interface (TUI) built with BubbleTea, a desktop application using NodeGUI, and a web frontend powered by NiceGUI. It is used by developers and system administrators to streamline provisioning workflows across different interfaces.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project consists of four main components: a Go-based daemon, a BubbleTea TUI, a NodeGUI desktop application, and a NiceGUI web frontend. These components interact with each other through the Go daemon, which serves as the backend service managing core functionality. The TUI, desktop, and web frontends act as clients, communicating with the daemon to provide user interfaces. The TUI and desktop applications are compiled binaries, while the web frontend runs as a Python application.
+The project consists of four main components that interact to provide a unified GUI for penguins-eggs:
 
-The repository structure is organized as follows:
+1. **Go Daemon (`daemon`)**: A backend service written in Go that handles core operations. It communicates with the other components via APIs.
+2. **BubbleTea TUI (`tui`)**: A terminal-based user interface built with the BubbleTea framework. It interacts with the daemon for real-time updates and operations.
+3. **NodeGUI Desktop (`desktop`)**: A desktop application built with NodeGUI. It provides a graphical interface and communicates with the daemon via HTTP or WebSocket.
+4. **NiceGUI Web Frontend (`web`)**: A web-based interface built with NiceGUI (Python). It also interacts with the daemon for backend operations.
+
+The directory structure is organized as follows:
 
 ```plaintext
 .
-├── bin/                # Compiled binaries for the daemon and TUI
-├── daemon/             # Go daemon source code
-│   └── cmd/            # Entry point for the daemon
-├── tui/                # BubbleTea TUI source code
-│   └── cmd/            # Entry point for the TUI
-├── desktop/            # NodeGUI desktop application
-│   ├── src/            # Source code for the desktop app
-│   └── dist/           # Build output for the desktop app
-├── web/                # NiceGUI web frontend
-│   ├── static/         # Static assets for the web app
-│   └── main.py         # Entry point for the web app
-├── assets/             # Additional resources (e.g., .desktop file)
-├── Makefile            # Build and run commands
-└── workflows/          # CI/CD configuration files
+├── Makefile          # Build and run tasks
+├── daemon            # Go daemon source code
+│   └── cmd           # Main entry point for the daemon
+├── tui               # BubbleTea TUI source code
+│   └── cmd           # Main entry point for the TUI
+├── desktop           # NodeGUI desktop app source code
+│   ├── src           # Application logic
+│   └── dist          # Build output
+├── web               # NiceGUI web frontend source code
+│   ├── static        # Static assets
+│   └── templates     # HTML templates
+├── assets            # Shared assets (e.g., icons, desktop files)
+├── proto             # Protocol buffer definitions
+├── locales           # Localization files
+└── .github           # GitHub workflows and CI/CD configurations
 ```
+
+Components are built and run independently but require the daemon to be running for full functionality.
 <!-- AI:end:architecture -->
 
 ## Install
@@ -53,7 +61,21 @@ cd eggs-gui
 ## CI
 
 <!-- AI:start:ci -->
-_CI documentation pending._
+The repository uses GitHub Actions for continuous integration and automation. The following workflows are defined:
+
+1. **`mirror-osp-to-ooc.yaml`**  
+   Mirrors the repository to an external organization.  
+   **Required secrets**: `OOC_REPO_TOKEN`.
+
+2. **`mirror.yaml`**  
+   Mirrors the repository to a secondary Git hosting service.  
+   **Required secrets**: `MIRROR_REPO_TOKEN`.
+
+3. **`trigger-artifact-mirror.yml`**  
+   Triggers artifact mirroring to external storage after a successful build.  
+   **Required secrets**: `ARTIFACT_STORAGE_KEY`, `ARTIFACT_STORAGE_SECRET`.
+
+Each workflow is located in the `.github/workflows/` directory. Ensure the required secrets are configured in the repository settings for successful execution.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -73,7 +95,9 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 ## Contributors
 
 <!-- AI:start:contributors -->
-_Contributors pending._
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 16 commits
+
+Note: This repository is a mirror. Please refer to the upstream source for additional details.
 <!-- AI:end:contributors -->
 
 ## Origins
