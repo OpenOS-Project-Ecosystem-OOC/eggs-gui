@@ -4,41 +4,37 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/eggs-gui)
 
 <!-- AI:start:what-it-does -->
-This project provides a unified graphical user interface for managing penguins-eggs, a system provisioning tool. It integrates multiple components, including a Go-based daemon, a terminal user interface (TUI) built with BubbleTea, a desktop application using NodeGUI, and a web frontend powered by NiceGUI. It is used by developers and system administrators to streamline provisioning workflows across different interfaces.
+This project provides a unified graphical user interface (GUI) for managing and interacting with penguins-eggs, a system customization tool. It includes a Go-based daemon, a terminal user interface (TUI) built with BubbleTea, a desktop application using NodeGUI, and a web frontend powered by NiceGUI. It is designed for developers and system administrators who need a centralized interface for penguins-eggs functionality across multiple platforms.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project consists of four main components that interact to provide a unified GUI for penguins-eggs:
+The project consists of four main components: a Go-based daemon, a BubbleTea-based TUI, a NodeGUI-based desktop application, and a NiceGUI-based web frontend. These components interact with each other through the Go daemon, which acts as the central backend service. The TUI, desktop, and web frontends communicate with the daemon to perform operations and display data.
 
-1. **Go Daemon (`daemon`)**: A backend service written in Go that handles core operations. It communicates with the other components via APIs.
-2. **BubbleTea TUI (`tui`)**: A terminal-based user interface built with the BubbleTea framework. It interacts with the daemon for real-time updates and operations.
-3. **NodeGUI Desktop (`desktop`)**: A desktop application built with NodeGUI. It provides a graphical interface and communicates with the daemon via HTTP or WebSocket.
-4. **NiceGUI Web Frontend (`web`)**: A web-based interface built with NiceGUI (Python). It also interacts with the daemon for backend operations.
-
-The directory structure is organized as follows:
+The repository structure is as follows:
 
 ```plaintext
 .
-├── Makefile          # Build and run tasks
-├── daemon            # Go daemon source code
-│   └── cmd           # Main entry point for the daemon
-├── tui               # BubbleTea TUI source code
-│   └── cmd           # Main entry point for the TUI
-├── desktop           # NodeGUI desktop app source code
-│   ├── src           # Application logic
-│   └── dist          # Build output
-├── web               # NiceGUI web frontend source code
-│   ├── static        # Static assets
-│   └── templates     # HTML templates
-├── assets            # Shared assets (e.g., icons, desktop files)
-├── proto             # Protocol buffer definitions
-├── locales           # Localization files
-└── .github           # GitHub workflows and CI/CD configurations
+├── .github/         # GitHub workflows and CI/CD configurations
+├── assets/          # Static assets (e.g., icons, desktop entry files)
+├── daemon/          # Go daemon source code
+│   └── cmd/         # Entry point for the daemon
+├── desktop/         # NodeGUI desktop application
+│   ├── src/         # Source code for the desktop app
+│   └── dist/        # Build output for the desktop app
+├── locales/         # Localization files
+├── proto/           # Protocol buffer definitions
+├── tui/             # BubbleTea TUI source code
+│   └── cmd/         # Entry point for the TUI
+├── web/             # NiceGUI web frontend
+│   └── requirements.txt  # Python dependencies for the web app
+├── bin/             # Compiled binaries for the daemon and TUI
+├── Makefile         # Build and run commands
+└── README.md        # Project documentation
 ```
 
-Components are built and run independently but require the daemon to be running for full functionality.
+Each frontend (TUI, desktop, web) requires the daemon to be running. The `Makefile` provides targets for building and running individual components or the entire system.
 <!-- AI:end:architecture -->
 
 ## Install
@@ -61,21 +57,11 @@ cd eggs-gui
 ## CI
 
 <!-- AI:start:ci -->
-The repository uses GitHub Actions for continuous integration and automation. The following workflows are defined:
+- **mirror-osp-to-ooc.yaml**: Syncs the repository from the open-source project (OSP) to the organization's private mirror. Requires the `OSP_TOKEN` and `OOC_TOKEN` secrets for authentication.
 
-1. **`mirror-osp-to-ooc.yaml`**  
-   Mirrors the repository to an external organization.  
-   **Required secrets**: `OOC_REPO_TOKEN`.
+- **mirror.yaml**: Mirrors the repository to a secondary remote. Requires the `MIRROR_TOKEN` secret for push access.
 
-2. **`mirror.yaml`**  
-   Mirrors the repository to a secondary Git hosting service.  
-   **Required secrets**: `MIRROR_REPO_TOKEN`.
-
-3. **`trigger-artifact-mirror.yml`**  
-   Triggers artifact mirroring to external storage after a successful build.  
-   **Required secrets**: `ARTIFACT_STORAGE_KEY`, `ARTIFACT_STORAGE_SECRET`.
-
-Each workflow is located in the `.github/workflows/` directory. Ensure the required secrets are configured in the repository settings for successful execution.
+- **trigger-artifact-mirror.yml**: Triggers artifact mirroring workflows for dependent repositories. Requires the `TRIGGER_TOKEN` secret for API access.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -95,9 +81,9 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 ## Contributors
 
 <!-- AI:start:contributors -->
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 16 commits
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 19 commits
 
-Note: This repository is a mirror. Please refer to the upstream source for additional details.
+Note: This repository is a mirror. Please refer to the upstream source for the original project.
 <!-- AI:end:contributors -->
 
 ## Origins
