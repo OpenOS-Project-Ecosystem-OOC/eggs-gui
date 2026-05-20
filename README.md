@@ -4,34 +4,38 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/eggs-gui)
 
 <!-- AI:start:what-it-does -->
-This project provides a unified graphical user interface for managing penguins-eggs, a system provisioning tool. It integrates multiple components, including a Go-based daemon, a terminal user interface (TUI) built with BubbleTea, a desktop application using NodeGUI, and a web frontend powered by NiceGUI. It is designed for developers and system administrators who need a centralized interface to interact with penguins-eggs across different environments.
+This project provides a unified graphical user interface (GUI) for managing the penguins-eggs system, combining multiple frontends: a Go-based daemon, a BubbleTea terminal user interface (TUI), a NodeGUI desktop application, and a NiceGUI web interface. It is designed for developers and system administrators who need a cohesive tool to interact with penguins-eggs across different platforms and environments.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project consists of four main components: a Go-based daemon, a BubbleTea-based TUI, a NodeGUI-based desktop application, and a NiceGUI-based web frontend. The daemon provides core functionality and serves as the backend for the other interfaces. The TUI, desktop, and web frontends interact with the daemon to provide user interfaces for different environments. The directory structure is as follows:
+The project consists of four main components: a Go-based daemon, a BubbleTea-based terminal UI (TUI), a NodeGUI-based desktop application, and a NiceGUI-based web frontend. These components interact with each other primarily through the `eggs-daemon`, which serves as the backend, providing core functionality and APIs. The TUI, desktop, and web frontends communicate with the daemon to perform operations and display data.
+
+The repository is organized as follows:
 
 ```plaintext
 .
-├── daemon/       # Go daemon source code
-│   └── cmd/      # Entry point for eggs-daemon
-├── tui/          # BubbleTea TUI source code
-│   └── cmd/      # Entry point for eggs-tui
-├── desktop/      # NodeGUI desktop application
-│   ├── src/      # Source code for the desktop app
-│   └── dist/     # Build output (ignored in clean)
-├── web/          # NiceGUI web frontend
-│   ├── main.py   # Entry point for the web app
+├── Makefile          # Build and run tasks for all components
+├── daemon/           # Go daemon source code
+│   ├── cmd/          # Main entry point for the daemon
+│   └── internal/     # Internal packages for daemon functionality
+├── tui/              # BubbleTea TUI source code
+│   ├── cmd/          # Main entry point for the TUI
+│   └── internal/     # Internal packages for TUI functionality
+├── desktop/          # NodeGUI desktop application
+│   ├── src/          # Source code for the desktop app
+│   └── dist/         # Build output
+├── web/              # NiceGUI web frontend
+│   ├── main.py       # Entry point for the web app
 │   └── requirements.txt # Python dependencies
-├── assets/       # Shared assets (e.g., icons, desktop files)
-├── bin/          # Compiled binaries (created during build)
-├── locales/      # Localization files
-├── proto/        # Protocol buffer definitions
-└── Makefile      # Build and run tasks
+├── assets/           # Static assets (e.g., icons, desktop files)
+├── config/           # Configuration files
+├── scripts/          # Utility scripts
+└── bin/              # Compiled binaries for the daemon and TUI
 ```
 
-The daemon must be running for the TUI, desktop, and web interfaces to function. The `Makefile` provides commands for building and running each component.
+The `Makefile` provides tasks to build, run, and clean each component. The daemon must be running for the TUI, desktop, and web frontends to function.
 <!-- AI:end:architecture -->
 
 ## Install
@@ -54,22 +58,16 @@ cd eggs-gui
 ## CI
 
 <!-- AI:start:ci -->
-The repository uses GitHub Actions for continuous integration. The following workflows are defined:
-
-1. **`mirror-osp-to-ooc.yaml`**  
-   Mirrors the repository from the open-source project (OSP) to an out-of-core (OOC) repository.  
-   - **Triggers:** Push to the default branch.  
-   - **Required Secrets:** `OOC_REPO_URL`, `OOC_REPO_TOKEN`.
-
-2. **`mirror.yaml`**  
-   Mirrors the repository to a secondary location for backup or distribution purposes.  
-   - **Triggers:** Push to the default branch.  
-   - **Required Secrets:** `MIRROR_REPO_URL`, `MIRROR_REPO_TOKEN`.
-
-3. **`trigger-artifact-mirror.yml`**  
-   Triggers artifact mirroring to external storage after a successful build.  
-   - **Triggers:** Workflow dispatch or successful completion of specific workflows.  
-   - **Required Secrets:** `ARTIFACT_STORAGE_URL`, `ARTIFACT_STORAGE_TOKEN`.
+- **build-and-test.yml**: Builds the Go daemon and TUI binaries using the Makefile targets `daemon` and `tui`. Runs basic tests. No secrets required.  
+- **desktop-build.yml**: Builds the NodeGUI desktop application using `npm run build`. Requires `NODE_AUTH_TOKEN` for npm authentication.  
+- **web-check.yml**: Verifies Python dependencies for the web frontend using `pip install -r web/requirements.txt`. No secrets required.  
+- **deb-package.yml**: Creates a Debian package using the Makefile `deb` target. No secrets required.  
+- **mirror-artifacts.yml**: Mirrors build artifacts to external storage. Requires `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.  
+- **sync-to-gitlab.yml**: Synchronizes repository changes to GitLab. Requires `GITLAB_TOKEN`.  
+- **validate-config.yml**: Validates configuration files for consistency. No secrets required.  
+- **token-health.yml**: Checks the health of API tokens used in workflows. Requires `GITHUB_TOKEN`.  
+- **update-readmes.yml**: Updates README files across repositories. No secrets required.  
+- **rotate-token.yml**: Rotates API tokens for security purposes. Requires `GITHUB_TOKEN` and `ROTATION_SECRET`.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -89,7 +87,9 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 ## Contributors
 
 <!-- AI:start:contributors -->
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 21 commits
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896): 153 commits
+
+Note: This repository is a mirror. Please refer to the upstream source for additional contributions and updates.
 <!-- AI:end:contributors -->
 
 ## Origins
