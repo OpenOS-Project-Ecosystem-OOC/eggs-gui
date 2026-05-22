@@ -27,7 +27,7 @@ jobs:
           MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
           git config --global credential.helper store
-          echo "https://x-access-token:${MIRROR_TOKEN}:x-oauth-basic" > ~/.git-credentials
+          echo "https://x-access-token:${MIRROR_TOKEN}@github.com" > ~/.git-credentials
 
           git remote add mirror \
             "https://x-access-token:${MIRROR_TOKEN}@github.com/Interested-Deving-1896/eggs-gui.git"
