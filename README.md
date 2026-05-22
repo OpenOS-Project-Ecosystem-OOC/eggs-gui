@@ -4,38 +4,37 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/eggs-gui)
 
 <!-- AI:start:what-it-does -->
-This project provides a unified graphical user interface (GUI) for managing the penguins-eggs system, combining multiple frontends: a Go-based daemon, a BubbleTea terminal user interface (TUI), a NodeGUI desktop application, and a NiceGUI web interface. It is designed for developers and system administrators who need a cohesive tool to interact with penguins-eggs across different platforms and environments.
+This project provides a unified graphical user interface (GUI) for managing the penguins-eggs system, combining multiple frontends: a Go-based daemon, a BubbleTea terminal user interface (TUI), a NodeGUI desktop application, and a NiceGUI web interface. It is designed for developers and system administrators who need a centralized and flexible way to interact with penguins-eggs across different platforms and environments.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project consists of four main components: a Go-based daemon, a BubbleTea-based terminal UI (TUI), a NodeGUI-based desktop application, and a NiceGUI-based web frontend. These components interact with each other primarily through the `eggs-daemon`, which serves as the backend, providing core functionality and APIs. The TUI, desktop, and web frontends communicate with the daemon to perform operations and display data.
+The project consists of four main components that interact to provide a unified GUI for penguins-eggs:
 
-The repository is organized as follows:
+1. **Go Daemon**: A backend service (`eggs-daemon`) written in Go, responsible for core operations and serving as the central communication hub for other components.
+2. **BubbleTea TUI**: A terminal-based user interface (`eggs-tui`) built with the BubbleTea framework, which interacts with the daemon for CLI-based user interactions.
+3. **NodeGUI Desktop**: A desktop application built with NodeGUI, providing a graphical interface. It communicates with the daemon for backend operations.
+4. **NiceGUI Web**: A web-based frontend built with Python and NiceGUI, offering a browser-accessible interface. It also interacts with the daemon.
 
+The components communicate with the daemon via inter-process communication (IPC) or HTTP APIs. The daemon must be running for the TUI, desktop, and web interfaces to function.
+
+Directory structure:
 ```plaintext
 .
-├── Makefile          # Build and run tasks for all components
-├── daemon/           # Go daemon source code
-│   ├── cmd/          # Main entry point for the daemon
-│   └── internal/     # Internal packages for daemon functionality
-├── tui/              # BubbleTea TUI source code
-│   ├── cmd/          # Main entry point for the TUI
-│   └── internal/     # Internal packages for TUI functionality
-├── desktop/          # NodeGUI desktop application
-│   ├── src/          # Source code for the desktop app
-│   └── dist/         # Build output
-├── web/              # NiceGUI web frontend
-│   ├── main.py       # Entry point for the web app
-│   └── requirements.txt # Python dependencies
-├── assets/           # Static assets (e.g., icons, desktop files)
-├── config/           # Configuration files
-├── scripts/          # Utility scripts
-└── bin/              # Compiled binaries for the daemon and TUI
+├── assets/          # Static assets (e.g., icons, desktop files)
+├── config/          # Configuration files
+├── daemon/          # Go daemon source code
+├── desktop/         # NodeGUI desktop application
+├── locales/         # Localization files
+├── proto/           # Protocol definitions (e.g., gRPC)
+├── scripts/         # Helper scripts
+├── tui/             # BubbleTea TUI source code
+├── web/             # NiceGUI web frontend
+├── bin/             # Compiled binaries (output directory)
+├── Makefile         # Build and run commands
+└── README.md        # Project documentation
 ```
-
-The `Makefile` provides tasks to build, run, and clean each component. The daemon must be running for the TUI, desktop, and web frontends to function.
 <!-- AI:end:architecture -->
 
 ## Install
