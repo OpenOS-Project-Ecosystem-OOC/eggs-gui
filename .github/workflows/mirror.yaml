@@ -27,10 +27,10 @@ jobs:
           MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
           git config --global credential.helper store
-          echo "https://${MIRROR_TOKEN}:x-oauth-basic@github.com" > ~/.git-credentials
+          echo "https://${MIRROR_TOKEN}:@github.com" > ~/.git-credentials
 
           git remote add mirror \
-            "https://${MIRROR_TOKEN}:x-oauth-basic@github.com/Interested-Deving-1896/eggs-gui.git"
+            "https://${MIRROR_TOKEN}:@github.com/Interested-Deving-1896/eggs-gui.git"
 
           git push mirror --all --force
           git push mirror --tags --force
