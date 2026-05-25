@@ -104,10 +104,7 @@ _Original project — no upstream fork._
 ## Resources
 
 <!-- AI:start:resources -->
-| File | Description |
-|---|---|
-| [.gitlab/merge_request_templates/Default.md](https://github.com/Interested-Deving-1896/eggs-gui/blob/main/.gitlab/merge_request_templates/Default.md) | GitLab MR template |
-| [config/gitlab-subgroups.yml](https://github.com/Interested-Deving-1896/eggs-gui/blob/main/config/gitlab-subgroups.yml) | GitLab subgroup map |
+_No additional resource files found._
 <!-- AI:end:resources -->
 
 ## License
