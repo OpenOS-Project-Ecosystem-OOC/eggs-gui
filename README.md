@@ -4,7 +4,7 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/eggs-gui)
 
 <!-- AI:start:what-it-does -->
-This project provides a unified graphical user interface (GUI) for managing penguins-eggs, a tool for creating and managing Linux system images. It integrates multiple components, including a Go-based daemon, a BubbleTea terminal user interface (TUI), a NodeGUI desktop application, and a NiceGUI web frontend. It is designed for developers and system administrators who need a consolidated interface for interacting with penguins-eggs across different platforms.
+This project provides a unified graphical user interface (GUI) for managing penguins-eggs, a system imaging and deployment tool. It integrates multiple components, including a Go-based daemon, a BubbleTea terminal user interface (TUI), a NodeGUI desktop application, and a NiceGUI web interface. It is designed for developers and system administrators who require a cohesive interface to interact with penguins-eggs across different platforms.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
