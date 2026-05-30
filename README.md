@@ -4,33 +4,39 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/eggs-gui)
 
 <!-- AI:start:what-it-does -->
-This project provides a unified graphical user interface (GUI) for managing penguins-eggs, a system imaging and deployment tool. It integrates multiple components, including a Go-based daemon, a BubbleTea terminal user interface (TUI), a NodeGUI desktop application, and a NiceGUI web interface. It is designed for developers and system administrators who require a cohesive interface to interact with penguins-eggs across different platforms.
+This project provides a unified graphical user interface (GUI) for managing the penguins-eggs system, combining multiple frontends: a Go-based daemon, a BubbleTea terminal UI (TUI), a NodeGUI desktop application, and a NiceGUI web interface. It is designed for developers and system administrators who need a centralized and flexible way to interact with penguins-eggs across different environments.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project consists of four main components: a Go-based daemon, a BubbleTea-based TUI, a NodeGUI desktop application, and a NiceGUI web frontend. The daemon provides core functionality and must be running for the other components to operate. The TUI, desktop, and web interfaces interact with the daemon to provide user-facing functionality. The directory structure reflects this modular design:
+The project consists of four main components that interact to provide a unified GUI for penguins-eggs:
+
+1. **Go Daemon (`daemon`)**: A backend service written in Go that handles core operations and communicates with other components.
+2. **BubbleTea TUI (`tui`)**: A terminal-based user interface built with the BubbleTea framework, which interacts with the daemon.
+3. **NodeGUI Desktop (`desktop`)**: A desktop application built with NodeGUI, providing a graphical interface that communicates with the daemon.
+4. **NiceGUI Web Frontend (`web`)**: A web-based interface built with Python and NiceGUI, also interacting with the daemon.
+
+The daemon serves as the central component, managing the application's state and providing APIs for the TUI, desktop, and web interfaces. Each frontend communicates with the daemon to perform operations and display data.
+
+The repository structure is as follows:
 
 ```plaintext
 .
 ├── Makefile          # Build and run commands
-├── daemon            # Go daemon source code
-│   └── cmd           # Entry point for eggs-daemon
-├── tui               # BubbleTea TUI source code
-│   └── cmd           # Entry point for eggs-tui
-├── desktop           # NodeGUI desktop application
-│   ├── src           # Source files
-│   └── dist          # Build output
-├── web               # NiceGUI web frontend
-│   └── main.py       # Entry point for the web server
-├── bin               # Compiled binaries
-├── assets            # Shared assets (e.g., icons, desktop files)
-├── config            # Configuration files
-└── scripts           # Utility scripts
+├── README.md         # Project documentation
+├── LICENSE           # License information
+├── daemon/           # Go daemon source code
+├── tui/              # BubbleTea TUI source code
+├── desktop/          # NodeGUI desktop app source code
+├── web/              # NiceGUI web frontend source code
+├── assets/           # Static assets (e.g., icons, desktop files)
+├── config/           # Configuration files
+├── proto/            # Protocol buffer definitions
+├── scripts/          # Helper scripts
+├── locales/          # Localization files
+└── .github/          # GitHub workflows and CI/CD configurations
 ```
-
-Each component is built independently using the `Makefile`. The `run` targets allow running the daemon and other components together or individually.
 <!-- AI:end:architecture -->
 
 ## Install
@@ -55,24 +61,20 @@ cd eggs-gui
 <!-- AI:start:ci -->
 The repository uses GitHub Actions for continuous integration and automation. Below are the workflows and their purposes:
 
-- **add-mirror-repo.yml**: Adds new repositories to the mirror configuration.
-- **cleanup-branches.yml**: Deletes stale branches from the repository.
-- **generate-dep-graph.yml**: Generates a dependency graph for the project.
-- **mirror-artifacts.yml**: Synchronizes build artifacts to external storage.
-- **mirror-orgs-full.yml**: Mirrors all repositories in an organization to another platform.
-- **mirror-releases.yml**: Mirrors release artifacts to external repositories.
-- **pr-automation.yml**: Automates tasks related to pull requests, such as labeling or assigning reviewers.
-- **rate-limit-status.yml**: Monitors and reports GitHub API rate limits.
-- **sync-eggs-docs-to-book.yml**: Syncs documentation to an external book format.
-- **update-infra-deps.yml**: Updates infrastructure dependencies in the repository.
+- **check-gitlab-sync.yml**: Verifies synchronization between GitHub and GitLab repositories.
+- **cleanup-branches.yml**: Removes stale branches from the repository.
+- **cleanup-pollution.yml**: Cleans up temporary or unnecessary files.
+- **mirror.yaml**: Mirrors the repository to other platforms.
+- **pr-automation.yml**: Automates pull request labeling and merging.
+- **rate-limit-status.yml**: Monitors API rate limits and logs status.
+- **rotate-token.yml**: Rotates authentication tokens for security.
+- **sync-forks.yml**: Synchronizes forks with their upstream repositories.
+- **update-readmes.yml**: Updates README files across the repository.
 
-Some workflows may require the following secrets:
-- `GITHUB_TOKEN`: Default token for accessing the repository.
-- `MIRROR_REPO_TOKEN`: Token for mirroring repositories.
-- `ARTIFACT_STORAGE_KEY`: Key for external artifact storage.
-- `DOCS_SYNC_TOKEN`: Token for syncing documentation.
-
-Refer to `.github/workflows/` for full workflow definitions.
+Required secrets:
+- `GITHUB_TOKEN`: Automatically provided by GitHub for repository-related actions.
+- `GL_ACCESS_TOKEN`: Required for GitLab synchronization workflows.
+- `MIRROR_API_KEY`: Needed for mirroring workflows to external platforms.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -92,7 +94,7 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 ## Contributors
 
 <!-- AI:start:contributors -->
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896): 182 commits
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896): 267 commits
 <!-- AI:end:contributors -->
 
 ## Origins
