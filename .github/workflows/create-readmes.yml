@@ -35,6 +35,7 @@ concurrency:
 
 permissions:
   contents: write
+  metadata: read  # Added permission to read metadata for listing OSP repos
 
 jobs:
   create:
