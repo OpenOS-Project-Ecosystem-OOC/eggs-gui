@@ -36,6 +36,7 @@ concurrency:
 permissions:
   contents: write
   metadata: read  # Added permission to read metadata for listing OSP repos
+  pull-requests: read  # Added permission to read pull requests for listing OSP repos
 
 jobs:
   create:
